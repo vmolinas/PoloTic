@@ -1,1 +1,3 @@
 # PoloTic
+
+Práctica de Java
