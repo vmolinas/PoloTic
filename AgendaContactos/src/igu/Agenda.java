@@ -1,30 +1,38 @@
 package igu;
 
-//import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author victor
  */
 public class Agenda extends javax.swing.JFrame {
+    /**
+     * Considerando que entre los vectores no se realizan ningún tipo de comparación
+     * ni operaciones entre ellos se definen como tipo String.
+     */
     
-    // Declaramos los vectores para guardar los datos
-        //Scanner teclado = new Scanner (System.in);
-        String dni [] = new String [10];
-        String nombre [] = new String [10];
-        String apellido [] = new String [10];
-        String direccion [] = new String [10];
-        String telefono [] = new String [10];
-        String fecha_nac [] = new String [10];
-        
+    // Vectores para guardar 10 contactos
+        String dni[] = new String [10];
+        String nombre[] = new String [10];
+        String apellido[] = new String [10];
+        String direccion[] = new String [10];
+        String telefono[] = new String [10];
+        String fecha_nac[] = new String [10];
         int i=0;
-
         
     public Agenda() {
         initComponents();
         txtIndice.setText("0");
         
+        // Se inicializa los vectores con blancos para que no muestre null
+        for (int n = 0; n<dni.length; n++){
+            dni[n]="";
+            nombre[n]="";
+            apellido[n]="";
+            direccion[n]="";
+            telefono[n]="";
+            fecha_nac[n]="";
+        }  
     }
     
     @SuppressWarnings("unchecked")
@@ -53,20 +61,52 @@ public class Agenda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabelTitulo.setFont(new java.awt.Font("Ubuntu", 2, 24)); // NOI18N
         jLabelTitulo.setText("Agenda Electrónica");
 
-        jLabelDni.setText("DNI");
+        jLabelDni.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabelDni.setText("DNI:");
 
-        jLabelNombre.setText("Nombre");
+        jLabelNombre.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabelNombre.setText("Nombre:");
 
-        jLabelApellido.setText("Apellido");
+        jLabelApellido.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabelApellido.setText("Apellido:");
 
-        jLabelDireccion.setText("Dirección");
+        jLabelDireccion.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabelDireccion.setText("Dirección:");
 
-        jLabelTelefono.setText("Teléfono");
+        jLabelTelefono.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabelTelefono.setText("Teléfono:");
 
-        jLabelFecha.setText("Fecha Nac.");
+        jLabelFecha.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabelFecha.setText("Fecha Nac.:");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
+        });
+
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
+
+        btnGuardar.setBackground(new java.awt.Color(18, 226, 30));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,14 +128,12 @@ public class Agenda extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Indice");
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        jLabel1.setText("Contacto :");
 
         txtIndice.setEditable(false);
-        txtIndice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIndiceActionPerformed(evt);
-            }
-        });
+        txtIndice.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        txtIndice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,58 +142,59 @@ public class Agenda extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelTitulo)
-                                .addGap(10, 10, 10))
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabelApellido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtApellido))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabelApellido)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtApellido))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelNombre)
-                                            .addComponent(jLabelDni))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                                            .addComponent(txtNombre))))
-                                .addGap(18, 18, 18)
+                                    .addComponent(jLabelNombre)
+                                    .addComponent(jLabelDni))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelDireccion)
-                                    .addComponent(jLabelFecha)
-                                    .addComponent(jLabelTelefono))))
-                        .addGap(2, 2, 2)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(txtNombre)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelTelefono)
+                            .addComponent(jLabelDireccion)
+                            .addComponent(jLabelFecha))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(341, 341, 341)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAtras)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSiguiente))
+                        .addGap(305, 305, 305)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIndice, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtIndice, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAtras)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSiguiente)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo)
+                .addGap(237, 237, 237))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabelTitulo)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDni)
                     .addComponent(jLabelDireccion)
@@ -174,15 +213,15 @@ public class Agenda extends javax.swing.JFrame {
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelFecha))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAtras)
-                    .addComponent(btnSiguiente)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtIndice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,8 +240,11 @@ public class Agenda extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
-        //Obligamos a que todos los campos estén completos
-        if (txtDni.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtDireccion.getText().equals("") || txtTelefono.getText().equals("") || txtFecha.getText().equals("")){
+       /*
+        Obligamos a que todos los campos estén completos.
+        Completando todo se guarda en esa posición de todos los vectores los datos cargados
+       */
+        if (txtDni.getText().equals(0) || txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtDireccion.getText().equals("") || txtTelefono.getText().equals("") || txtFecha.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
         }else{
             
@@ -211,42 +253,53 @@ public class Agenda extends javax.swing.JFrame {
             apellido[i]=txtApellido.getText();
             direccion[i]=txtDireccion.getText();
             telefono[i]=txtTelefono.getText();
-            fecha_nac[i]=txtFecha.getText();
-            
+            fecha_nac[i]=txtFecha.getText(); 
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIndiceActionPerformed
-    }//GEN-LAST:event_txtIndiceActionPerformed
-
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-         if (i<10){
+        // Incrementa el contador del Índice 
+        if (i<9){
             i++;
             String index = Integer.toString(i);
             txtIndice.setText(index);
-        }
-         if (!dni[i].equals("")){
-            txtDni.setText(String.valueOf(dni[i]));
-            txtNombre.setText(String.valueOf(nombre[i]));
-            txtApellido.setText(String.valueOf(apellido[i]));
-            txtDireccion.setText(String.valueOf(direccion[i]));
-            txtTelefono.setText(String.valueOf(telefono[i]));
-            txtFecha.setText(String.valueOf(fecha_nac[i]));
          }
-            txtDni.setText("");
-            txtNombre.setText("");
-            txtApellido.setText("");
-            txtDireccion.setText("");
-            txtTelefono.setText("");
-            txtFecha.setText("");
+         
+        /*
+            Porque se obligo al principio a completar todos los campos, con preguntar
+            en la posición actual del vector DNI se sabe si tiene datos cargados o no,
+            de acuerdo a eso se muestra que tiene guardado.
+        */
+         if (!dni[i].equals("")){
+             txtDni.setText(String.valueOf(dni[i]));
+             txtNombre.setText(String.valueOf(nombre[i]));
+             txtApellido.setText(String.valueOf(apellido[i]));
+             txtDireccion.setText(String.valueOf(direccion[i]));
+             txtTelefono.setText(String.valueOf(telefono[i]));
+             txtFecha.setText(String.valueOf(fecha_nac[i]));   
+         } else {
+             txtDni.setText("");
+             txtNombre.setText("");
+             txtApellido.setText("");
+             txtDireccion.setText("");
+             txtTelefono.setText("");
+             txtFecha.setText("");
+         }    
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+       // Decrementa el contador del Índice
        if (i>0){
             i--;
             String index = Integer.toString(i);
             txtIndice.setText(index);
-        }
+       }
+       
+       /*
+            Porque se obligo al principio a completar todos los campos, con preguntar
+            en la posición actual del vector DNI se sabe si tiene datos cargados o no,
+            de acuerdo a eso se muestra que tiene guardado.
+       */
        if (!dni[i].equals("")){
             txtDni.setText(String.valueOf(dni[i]));
             txtNombre.setText(String.valueOf(nombre[i]));
@@ -254,16 +307,79 @@ public class Agenda extends javax.swing.JFrame {
             txtDireccion.setText(String.valueOf(direccion[i]));
             txtTelefono.setText(String.valueOf(telefono[i]));
             txtFecha.setText(String.valueOf(fecha_nac[i]));
-         }
-            txtDni.setText("");
-            txtNombre.setText("");
-            txtApellido.setText("");
-            txtDireccion.setText("");
-            txtTelefono.setText("");
-            txtFecha.setText("");
+         } else{
+                txtDni.setText("");
+                txtNombre.setText("");
+                txtApellido.setText("");
+                txtDireccion.setText("");
+                txtTelefono.setText("");
+                txtFecha.setText("");
+       }
     }//GEN-LAST:event_btnAtrasActionPerformed
+    
+    /**
+     *   Se realizan ciertas restricciones al momento de realizar ingresos de los datos.
+     *   Fuente: https://matixa.co/categoria/programacion/java/validar-ingreso-de-caracteres-en-un-jtextfield
+    */
+    
+    // Se permite un DNI solo con números por código ASCII y hasta 8 dígitos
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+        // 48--> 0 | 57--> 9
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        
+        if (!numeros){
+            evt.consume();
+        }
 
-  
+        if (txtDni.getText().trim().length() == 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDniKeyTyped
+
+    // Se permite un Teléfono solo con números por código ASCII y hasta 15 dígitos
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        int key = evt.getKeyChar();
+        // 48--> 0 | 57--> 9
+        boolean numeros = key >= 48 && key <= 57;
+        
+        if (!numeros){
+            evt.consume();
+        }
+
+        if (txtTelefono.getText().trim().length() == 15) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+    
+    // Permite sólo el ingreso de caracteres alfabéticos
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+            
+        if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    // Permite sólo el ingreso de caracteres alfabéticos
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+            
+        if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnGuardar;
